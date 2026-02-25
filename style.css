@@ -1,0 +1,238 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+#viewport {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+  background-color: #222;
+  background-size: 25px 25px;
+  background-image: radial-gradient(circle, #1c1c1c 2px, rgba(143,56,56,0) 1px);
+  overflow: hidden;
+}
+
+#tree-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 30000px;
+  height: 18750px;
+  transform-origin: 0 0;
+}
+@font-face {
+  font-family: 'Comfortaa';
+  src: url(public/FiraCode-VariableFont_wght.ttf);
+  font-weight: 500;
+}
+
+/* Upgrade Nodes */
+
+.upgrade-node {
+  width: 250px;
+  height: 125px;
+  background-color: rgb(179, 179, 179);
+  border: 4px solid #555555;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  padding: 4px;
+  box-sizing: border-box;
+  font-family: 'Comfortaa', sans-serif;
+  user-select: none;
+
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.upgrade-node:hover {
+    transform: scale(1.1);
+}
+
+.upgrade-node-top {
+  height: 15%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom:4px;
+}
+
+.upgrade-node-id {
+  color: #fff;
+}
+
+.upgrade-node-name {
+  color: #fff;
+  text-align: right;
+}
+
+.upgrade-node-middle {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background-color: #9f9f9f;
+}
+
+.upgrade-node-description {
+  font-size: 12px;
+  color: #f0f0f0;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+
+}
+
+.upgrade-node-description-small {
+  font-size: 10px ;
+  opacity: 0.8; 
+}
+
+.upgrade-node-bottom {
+  height: 15%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top:4px;
+}
+
+.upgrade-node-effect {
+  color: #fff;
+}
+
+.upgrade-node-cost {
+  color: #fff;
+}
+
+.upgrade-node.canBuy {
+    border-color:#ffffff;
+}
+
+/* Currency Display */
+
+#currency-display {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  display: flex; 
+  align-items: center;
+
+  width: 100px;         
+  background-color: rgba(0,0,0,0.7);
+  color: #fff;
+  font-family: 'Comfortaa', sans-serif;
+  padding: 8px 16px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  z-index: 1000;
+}
+
+#currency-display-left {
+  width: 75%;
+}
+
+#currency-display-right {
+  width: 25%;
+  text-align: center;
+}
+
+.currency-amount {
+  font-size: 18px;
+}
+
+.currency-per-second {
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+.currency-symbol-display {
+  font-size: 32px;
+}
+.currency-symbol {
+    font-size: 1.3em;
+}
+
+/* Menu */
+
+#menu-bar {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+
+  display: flex;
+  gap: 10px;
+
+  background-color: rgba(0,0,0,0.7);
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+
+  z-index: 9999;
+}
+
+.menu-btn {
+  width: 40px;
+  height: 40px;
+
+  background-color: rgba(255,255,255,0.1);
+  color: white;
+  border: none;
+  border-radius: 6px;
+
+  font-size: 18px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.menu-btn:hover {
+  background-color: rgba(255,255,255,0.25);
+}
+
+#popup-overlay {
+  position: fixed;
+  inset: 0;
+
+  background-color: rgba(0,0,0,0.5);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 10000;
+}
+
+#popup-window {
+  width: 70vw;
+  height: 70vh;
+
+  background-color: rgba(0,0,0,0.85);
+  color: white;
+  font-family: 'Comfortaa', sans-serif;
+
+  border-radius: 12px;
+  box-shadow: 0 0 25px rgba(0,0,0,0.7);
+
+  position: relative;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+#close-popup {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}

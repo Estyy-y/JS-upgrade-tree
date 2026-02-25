@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Upgrade Tree</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="viewport">
+        <svg id="tree-lines" style="position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none;"></svg>
+        <div id="tree-container"></div>
+        <div id="menu-bar">
+            <button class="menu-btn" data-tab="options">O</button>
+            <button class="menu-btn" data-tab="stats">S</button>
+            <button class="menu-btn" data-tab="achievements">A</button>    
+        </div>
+        <div id="popup-overlay" style="display:none;">
+            <div id="popup-window">
+            <button id="close-popup">✖</button>
+            <div id="popup-content"></div>
+        </div>
+</div>
+    </div>
+
+    <script type="module" src="js/break_eternity.js"></script>
+    <script type="module" src="js/eternal_notations.js"></script>
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>
