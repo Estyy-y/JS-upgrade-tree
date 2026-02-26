@@ -27,27 +27,20 @@ export function createUpgradeNode(upgrade) {
     const desc = document.createElement("div");
     desc.classList.add("upgrade-node-description");
 
-    // Render description (dynamic or static)
-    if (typeof upgrade.description === "function") {
-        desc.innerHTML = upgrade.description(upgrade);
-    } else {
-        desc.innerHTML = upgrade.description || "";
-    }
-
     middle.appendChild(desc);
 
     // ----- BOTTOM -----
     const bottom = document.createElement("div");
     bottom.classList.add("upgrade-node-bottom");
 
-    const level = document.createElement("div");
-    level.classList.add("upgrade-node-effect");
+    const levelEl = document.createElement("div");
+    levelEl.classList.add("upgrade-node-effect");
 
-    const cost = document.createElement("div");
-    cost.classList.add("upgrade-node-cost");
+    const costEl = document.createElement("div");
+    costEl.classList.add("upgrade-node-cost");
 
-    bottom.appendChild(level);
-    bottom.appendChild(cost);
+    bottom.appendChild(levelEl);
+    bottom.appendChild(costEl);
 
     // Assemble node
     node.appendChild(top);
@@ -59,5 +52,6 @@ export function createUpgradeNode(upgrade) {
         upgrade.purchase(player);
     });
 
-    return { node, level, cost };
+    // Return direct references to all dynamic elements
+    return { node, level: levelEl, cost: costEl, desc };
 }

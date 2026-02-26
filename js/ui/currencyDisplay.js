@@ -1,3 +1,5 @@
+import { formatNumber } from "./format.js";
+
 export function createCurrencyDisplay(player) {
     const display = document.createElement("div");
     const left = document.createElement("div");
@@ -14,22 +16,15 @@ export function createCurrencyDisplay(player) {
     function update() {
         const power = player.currency.power;
 
-        const formattedAmount =
-            EternalNotations.HTMLPresets.Default.format(
-                power.amount.floor()
-            );
-
-        const formattedPerSecond =
-            EternalNotations.HTMLPresets.Default.format(
-                power.perSecond.floor()
-            );
+        const formattedAmount = formatNumber(power.amount);
+        const formattedPerSecond = formatNumber(power.perSecond);
 
         left.innerHTML = `
             <div class="currency-amount">
                 ${formattedAmount}
             </div>
             <div class="currency-per-second">
-                ${formattedPerSecond}/s
+                +${formattedPerSecond}/s
             </div>
         `;
 

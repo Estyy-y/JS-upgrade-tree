@@ -1,4 +1,4 @@
-import { upgrades } from '../content/upgrades.js';
+import { upgrades } from '../content/upgrades/upgrades.js';
 
 export const SAVE_KEY = "myGameSave";
 
@@ -10,6 +10,7 @@ export function saveGame(player) {
         data: {
             currency: {},
             upgrades: player.upgrades || {},
+            settings: player.settings || {},
             lastUpdate: player.lastUpdate || Date.now()
         }
     };
@@ -62,9 +63,12 @@ export function restore(player, loaded) {
     upgrades.forEach(upg => {
         if (player.upgrades[upg.id] != null) {
             upg.level = player.upgrades[upg.id];
-            upg.updateCost();        
         }
     });
+
+    if (loaded.settings) {
+        Object.assign(player.settings, loaded.settings);
+    }
 
     player.lastUpdate = loaded.lastUpdate || Date.now();
 }

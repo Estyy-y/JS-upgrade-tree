@@ -13,6 +13,9 @@ export const player = {
     ),
     
     upgrades: {},
+    settings: {
+        scientificThreshold: 33,
+    },
 
     lastUpdate: Date.now()
 

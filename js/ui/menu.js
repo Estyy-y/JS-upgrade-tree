@@ -17,6 +17,7 @@ document.querySelectorAll(".menu-btn").forEach(button => {
 });
 
 export function openPopup(tab) {
+
     overlay.style.display = "flex";
     content.innerHTML = "";
 

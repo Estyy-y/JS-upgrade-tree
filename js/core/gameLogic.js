@@ -1,5 +1,6 @@
-import { upgrades } from '../content/upgrades.js';
+import { upgrades } from '../content/upgrades/upgrades.js';
 import { CURRENCY } from '../constants.js';
+import { player } from '../core/player.js';
 
 export function calculatePassiveIncome() {
     const baseIncome = {};
@@ -10,38 +11,24 @@ export function calculatePassiveIncome() {
         multipliers[c.id] = new Decimal(1);
     }
 
-
     upgrades.forEach(upg => {
-        if (upg.level <= 0 || !upg.effect) return;
+        const level = player.upgrades[upg.id] ?? 0;
+
+        if (level <= 0 || !upg.effect) return;
 
         const { type, currency, amount, amountFunction } = upg.effect;
 
+        const effectValue = amountFunction
+            ? amountFunction(level, player)
+            : amount;
+
         switch (type) {
             case "currencyPerSecond":
-    
-                let effectAmount = amount;
-                if (amountFunction) {
-                    effectAmount = amountFunction(upg);
-                }
-                baseIncome[currency] = baseIncome[currency].add(new Decimal(effectAmount).mul(upg.level));
+                baseIncome[currency] = baseIncome[currency].add(new Decimal(effectValue));
                 break;
-        }
-    });
 
-
-    upgrades.forEach(upg => {
-        if (upg.level <= 0 || !upg.effect) return;
-
-        const { type, amount, amountFunction, currency } = upg.effect;
-
-        const actualAmount = amountFunction ? amountFunction(upg) : amount;
-
-        switch (type) {
             case "currencyMultiplier":
-                multipliers[currency] = multipliers[currency].mul(new Decimal(actualAmount));
-                break;
-            case "currencyMultiplierComp":
-                multipliers[currency] = multipliers[currency].mul(new Decimal(actualAmount).pow(upg.level));
+                multipliers[currency] = multipliers[currency].mul(new Decimal(effectValue));
                 break;
         }
     });
